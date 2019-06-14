@@ -1,0 +1,23 @@
+server:
+  port: 8191
+  servlet:
+    context-path: /demo
+app:
+  messages:
+    log-welcome: Reading directory. Searching new files.
+  routes:
+    recebidos: file:/home/leopoldo.barreiro/projetos/opensource/arquivos/recebidos?initialDelay=3000&delay=2000&delete=true
+    processados: file:/home/leopoldo.barreiro/projetos/opensource/arquivos/processados
+    invalidos: file:/home/leopoldo.barreiro/projetos/opensource/arquivos/invalidos
+    validos: file:/home/leopoldo.barreiro/projetos/opensource/arquivos/validos
+    codificacao-arquivo: direct:codificacao-arquivo-valida
+    scheduled-read-files: quartz2://simplest-possible/read-files?cron=0/30+*+*+?+*+*
+    scheduled-redirect: direct:routing-read-files
+  routes-id:
+    recebidos: arquivos-recebidos
+    processados: arquivos-processados
+    invalidos: arquivos-invalidos
+    validos: arquivos-validos
+    codificacao-arquivo: codificacao-arquivo-valida
+    scheduled-read-files: read-files
+    scheduled-redirect: routing-read-files

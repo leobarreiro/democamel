@@ -1,0 +1,38 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.5.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'br.com.unicred.api'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.apache.camel:camel-spring-boot-starter:2.24.0'
+	compile 'org.springframework.boot:spring-boot-starter-undertow'
+	compile 'org.apache.camel:camel-quartz2:2.24.0'
+	//developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile "org.apache.camel:camel-test-spring:2.24.0"
+	testCompile group: 'com.google.code.bean-matchers', name: 'bean-matchers', version: '0.10'	
+}
+
+configurations {
+	compile.exclude module: 'spring-boot-starter-tomcat'
+}
